@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('app')->group(function (){
+    Route::get('/social-links', [GuestViewController::class, 'getSocialLinks']);
     Route::get('/base-info', [GuestViewController::class, 'baseInfoSection']);
     Route::get('/partner', [GuestViewController::class, 'partnerView']);
     Route::get('/slider', [GuestViewController::class, 'sliderView']);
     Route::get('/about', [GuestViewController::class, 'aboutSection']);
     Route::get('/events', [GuestViewController::class, 'eventsSection']);
+    Route::get('/projects', [GuestViewController::class, 'projectsView']);
+    Route::get('/projects-single/{project}', [GuestViewController::class, 'projectSingleView']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

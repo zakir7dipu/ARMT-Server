@@ -7,6 +7,8 @@ use App\Models\AboutSection;
 use App\Models\Event;
 use App\Models\GeneralSettings;
 use App\Models\Partner;
+use App\Models\Project;
+use App\Models\ShocialMediaLinks;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -52,6 +54,40 @@ class GuestViewController extends Controller
     {
         try {
             return response()->json(Event::all());
+        }catch (\Throwable $th){
+            return response()->json($th->getMessage());
+        }
+    }
+
+    public function projectsView()
+    {
+        try {
+            return response()->json(Project::select('id','image','title','sub_title')->get());
+        }catch (\Throwable $th){
+            return response()->json($th->getMessage());
+        }
+    }
+
+    public function projectSingleView(Project $project)
+    {
+        try {
+            return response()->json((object)[
+                'project'=> (object)[
+                    'id' => $project->id,
+                    'title' => $project->title,
+                    'description' => $project->description
+                ],
+                'baseInfo'=>GeneralSettings::first()
+            ]);
+        }catch (\Throwable $th){
+            return response()->json($th->getMessage());
+        }
+    }
+
+    public function getSocialLinks()
+    {
+        try {
+            return response()->json(ShocialMediaLinks::first());
         }catch (\Throwable $th){
             return response()->json($th->getMessage());
         }

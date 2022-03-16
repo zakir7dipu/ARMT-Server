@@ -15,11 +15,11 @@ class CreateShocialMediaLinksTable extends Migration
     {
         Schema::create('shocial_media_links', function (Blueprint $table) {
             $table->id();
-            $table->string('facebook');
-            $table->string('whatsapp');
-            $table->string('linkedin');
-            $table->string('tweeter');
-            $table->string('pinterest');
+            $table->string('facebook')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('tweeter')->nullable();
+            $table->string('pinterest')->nullable();
             $table->timestamps();
         });
     }
