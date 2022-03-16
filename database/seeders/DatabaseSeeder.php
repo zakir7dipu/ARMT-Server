@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(SliderSeeder::class);
         // $this->call(AboutSectionSeeder::class);
         // $this->call(GeneralSettingsSeeder::class);
-
         $this->call(EventSeeder::class);
+        $this->call(ProjectSeeder::class);
     }
 }

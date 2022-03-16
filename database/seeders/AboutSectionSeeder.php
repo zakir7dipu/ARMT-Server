@@ -26,6 +26,7 @@ class AboutSectionSeeder extends Seeder
 </p>'
         ];
 
+        AboutSection::truncate();
         AboutSection::create($section);
     }
 }

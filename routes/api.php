@@ -19,6 +19,7 @@ Route::prefix('app')->group(function (){
     Route::get('/partner', [GuestViewController::class, 'partnerView']);
     Route::get('/slider', [GuestViewController::class, 'sliderView']);
     Route::get('/about', [GuestViewController::class, 'aboutSection']);
+    Route::get('/events', [GuestViewController::class, 'eventsSection']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

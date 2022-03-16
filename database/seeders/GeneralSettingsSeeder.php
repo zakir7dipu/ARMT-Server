@@ -22,6 +22,7 @@ class GeneralSettingsSeeder extends Seeder
             'email' => 'info@ssgbd.com',
             'banner_image' => '/settings/upload/MASTER-TEMPLET_1920X350.png'
         ];
+        GeneralSettings::truncate();
         GeneralSettings::create($generalInfo);
     }
 }

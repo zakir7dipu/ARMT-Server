@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutSection;
+use App\Models\Event;
 use App\Models\GeneralSettings;
 use App\Models\Partner;
 use App\Models\Slider;
@@ -42,6 +43,15 @@ class GuestViewController extends Controller
     {
         try {
             return response()->json(AboutSection::first());
+        }catch (\Throwable $th){
+            return response()->json($th->getMessage());
+        }
+    }
+
+    public function eventsSection()
+    {
+        try {
+            return response()->json(Event::all());
         }catch (\Throwable $th){
             return response()->json($th->getMessage());
         }
