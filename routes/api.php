@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Guest\GuestViewController;
+use App\Http\Controllers\Api\SliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('app')->group(function (){
+    Route::post('/login', [LoginController::class, 'login']);
     Route::get('/social-links', [GuestViewController::class, 'getSocialLinks']);
     Route::get('/base-info', [GuestViewController::class, 'baseInfoSection']);
     Route::get('/partner', [GuestViewController::class, 'partnerView']);
@@ -23,6 +26,10 @@ Route::prefix('app')->group(function (){
     Route::get('/events', [GuestViewController::class, 'eventsSection']);
     Route::get('/projects', [GuestViewController::class, 'projectsView']);
     Route::get('/projects-single/{project}', [GuestViewController::class, 'projectSingleView']);
+
+    Route::middleware('custom.auth')->prefix('dashboard')->group(function (){
+        Route::resource('/slider',SliderController::class);
+    });
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

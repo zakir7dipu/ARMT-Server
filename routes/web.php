@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('https://armt.bizzsol.com.bd/');
 });
 
 Auth::routes();
