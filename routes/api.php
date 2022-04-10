@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Guest\GuestViewController;
+use App\Http\Controllers\Api\HomePageController;
 use App\Http\Controllers\Api\SliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::prefix('app')->group(function (){
 
     Route::middleware('custom.auth')->prefix('dashboard')->group(function (){
         Route::resource('/slider',SliderController::class);
+        Route::get('/about-section', [HomePageController::class, 'aboutSection']);
+        Route::post('/about-section', [HomePageController::class, 'aboutSectionStore']);
     });
 });
 

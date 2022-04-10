@@ -63,7 +63,7 @@ class SliderController extends Controller
                 $x = substr($x, 0, 6) . 'DAC.';
                 $filename = time() . $x . $image->getClientOriginalExtension();
                 Image::make($image->getRealPath())
-                    ->resize(800, 800)
+                    ->resize(1920, 1000)
                     ->save(public_path('/upload/sliders/' . $filename));
                 $path = "/upload/sliders/".$filename;
                 $slider->image = $path;
