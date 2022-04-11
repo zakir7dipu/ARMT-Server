@@ -32,6 +32,12 @@ Route::prefix('app')->group(function (){
         Route::resource('/slider',SliderController::class);
         Route::get('/about-section', [HomePageController::class, 'aboutSection']);
         Route::post('/about-section', [HomePageController::class, 'aboutSectionStore']);
+
+        Route::get('/feature-section', [HomePageController::class, 'featureSection']);
+        Route::post('/feature-section', [HomePageController::class, 'featureSectionStore']);
+
+        Route::get('/contact', [HomePageController::class, 'contactData']);
+        Route::post('/contact', [HomePageController::class, 'contactDataStore']);
     });
 });
 
