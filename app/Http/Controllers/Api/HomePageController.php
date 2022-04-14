@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutSection;
+use App\Models\Event;
 use App\Models\FeatureSection;
 use App\Models\GeneralSettings;
 use Illuminate\Http\Request;
@@ -102,5 +103,11 @@ class HomePageController extends Controller
         return response()->json((object)[
             "message"=>'Saved Successfully',
         ],201);
+    }
+
+    public function eventIndex()
+    {
+        $events = Event::all();
+        return response()->json($events);
     }
 }

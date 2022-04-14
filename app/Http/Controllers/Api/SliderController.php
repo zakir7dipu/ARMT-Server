@@ -91,9 +91,9 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Slider $slider)
     {
-        //
+       return response()->json($slider);
     }
 
     /**
@@ -114,9 +114,31 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Slider $slider)
     {
-        //
+        if ($request->hasFile('image')){
+            if($slider->image){
+                $file = $slider->image;
+                if (file_exists(public_path($file))) {
+                    unlink(public_path($file));
+                }
+            }
+           $image = $request->image;
+           $x = 'abcdefghijklmnopqrstuvwxyz0123456789';
+           $x = str_shuffle($x);
+           $x = substr($x, 0, 6) . 'DAC.';
+           $filename = time() . $x . $image->getClientOriginalExtension();
+           Image::make($image->getRealPath())
+               ->resize(1920, 1000)
+               ->save(public_path('/upload/sliders/' . $filename));
+           $path = "/upload/sliders/".$filename;
+           $slider->image = $path;
+       }
+       $slider->title = $request->title;
+       $slider->save();
+       return response()->json((object)[
+           "message"=>'updated Successfully',
+       ],201);
     }
 
     /**
@@ -128,9 +150,11 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         try {
-            $file = $slider->image;
-            if (file_exists(public_path($file))) {
-                unlink(public_path($file));
+            if($slider->image){
+                $file = $slider->image;
+                if (file_exists(public_path($file))) {
+                 unlink(public_path($file));
+                }
             }
             $slider->delete();
             $data = (object)[

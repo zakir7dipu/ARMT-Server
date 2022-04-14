@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\Guest\GuestViewController;
 use App\Http\Controllers\Api\HomePageController;
 use App\Http\Controllers\Api\SliderController;
@@ -30,6 +31,8 @@ Route::prefix('app')->group(function (){
 
     Route::middleware('custom.auth')->prefix('dashboard')->group(function (){
         Route::resource('/slider',SliderController::class);
+        Route::post('/slider-update/{slider}', [SliderController::class, 'update']);
+
         Route::get('/about-section', [HomePageController::class, 'aboutSection']);
         Route::post('/about-section', [HomePageController::class, 'aboutSectionStore']);
 
@@ -38,6 +41,9 @@ Route::prefix('app')->group(function (){
 
         Route::get('/contact', [HomePageController::class, 'contactData']);
         Route::post('/contact', [HomePageController::class, 'contactDataStore']);
+
+        Route::resource('/event', EventController::class);
+        Route::post('/event-update/{event}', [EventController::class, 'update']);
     });
 });
 
