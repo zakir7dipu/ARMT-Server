@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\Guest\GuestViewController;
 use App\Http\Controllers\Api\HomePageController;
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\SliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,9 @@ Route::prefix('app')->group(function (){
 
         Route::resource('/event', EventController::class);
         Route::post('/event-update/{event}', [EventController::class, 'update']);
+
+        Route::resource('/projects', ProjectController::class);
+        Route::post('/project-update/{project}', [ProjectController::class, 'update']);
     });
 });
 
