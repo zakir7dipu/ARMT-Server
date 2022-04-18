@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Guest;
 use App\Http\Controllers\Controller;
 use App\Models\AboutSection;
 use App\Models\Event;
+use App\Models\FeatureSection;
 use App\Models\GeneralSettings;
 use App\Models\Partner;
 use App\Models\Project;
@@ -88,6 +89,15 @@ class GuestViewController extends Controller
     {
         try {
             return response()->json(ShocialMediaLinks::first());
+        }catch (\Throwable $th){
+            return response()->json($th->getMessage());
+        }
+    }
+
+    public function featureSectionView()
+    {
+        try {
+            return response()->json(FeatureSection::first());
         }catch (\Throwable $th){
             return response()->json($th->getMessage());
         }

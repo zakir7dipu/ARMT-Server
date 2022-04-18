@@ -29,6 +29,7 @@ Route::prefix('app')->group(function (){
     Route::get('/events', [GuestViewController::class, 'eventsSection']);
     Route::get('/projects', [GuestViewController::class, 'projectsView']);
     Route::get('/projects-single/{project}', [GuestViewController::class, 'projectSingleView']);
+    Route::get('/feature-section', [GuestViewController::class, 'featureSectionView']);
 
     Route::middleware('custom.auth')->prefix('dashboard')->group(function (){
         Route::resource('/slider',SliderController::class);
